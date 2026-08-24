@@ -1,0 +1,133 @@
+<div class="auth-page">
+  <!-- Header -->
+  <header class="auth-header wrap">
+    <a routerLink="/" class="logo"> <span class="logo-mark"></span>orbit </a>
+    <div class="header-right">
+      <span class="header-hint">Have an account?</span>
+      <a routerLink="/login" class="btn-pill">Sign In</a>
+    </div>
+  </header>
+
+  <!-- Main Auth Form -->
+  <main class="auth-main wrap">
+    <div class="blob-peach"></div>
+    <div class="blob-lime"></div>
+
+    <div class="auth-card">
+      <div class="auth-badge">Free 14-day trial</div>
+
+      <div class="eyebrow">02 / REGISTER</div>
+      <h1 class="auth-title">Start building your <em>space.</em></h1>
+      <p class="auth-subtitle">
+        No credit card required. Setup your team's workspace in less than 2
+        minutes.
+      </p>
+
+      <form (ngSubmit)="onSubmit()" class="auth-form" novalidate>
+        <!-- Full Name -->
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input
+            type="text"
+            [(ngModel)]="fullName"
+            name="fullName"
+            required
+            placeholder="Alex Morgan"
+            class="form-input"
+          />
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label class="form-label">Work Email</label>
+          <input
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            required
+            placeholder="alex@company.com"
+            class="form-input"
+          />
+        </div>
+
+        <!-- Workspace Name -->
+        <!-- <div class="form-group">
+          <label class="form-label">Workspace Name</label>
+          <div class="input-wrapper">
+            <input
+              type="text"
+              [(ngModel)]="workspaceName"
+              name="workspaceName"
+              required
+              placeholder="acme-studio"
+              class="form-input"
+            />
+            <span class="subdomain-suffix">.orbit.app</span>
+          </div>
+        </div> -->
+
+        <!-- Password -->
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div class="input-wrapper">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              [(ngModel)]="password"
+              name="password"
+              required
+              placeholder="At least 8 characters"
+              class="form-input"
+            />
+            <button
+              type="button"
+              (click)="showPassword = !showPassword"
+              class="toggle-pwd"
+            >
+              {{ showPassword ? "HIDE" : "SHOW" }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Terms Agreement -->
+        <!-- <div class="checkbox-row">
+          <input
+            type="checkbox"
+            id="agreeTerms"
+            [(ngModel)]="agreeTerms"
+            name="agreeTerms"
+            required
+          />
+          <label for="agreeTerms" class="checkbox-label">
+            I agree to Orbit's <a routerLink="/">Terms of Service</a> and <a routerLink="/">Privacy Policy</a>.
+          </label>
+        </div> -->
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn" [disabled]="!isFormValid">
+          {{ buttonText() }}
+        </button>
+      </form>
+
+      <div class="divider">
+        <span class="divider-text">OR REGISTER WITH</span>
+      </div>
+
+      <app-social-auth-buttons intent="signup" />
+
+      <div class="switch-text">
+        Already have an account?
+        <a routerLink="/login">Sign in </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <!-- <footer class="auth-footer wrap">
+    <div>© 2026 Orbit, Inc. All rights reserved.</div>
+    <div class="footer-links">
+      <a routerLink="/">Privacy</a>
+      <a routerLink="/">Terms</a>
+      <a routerLink="/">Contact Support</a>
+    </div>
+  </footer> -->
+</div>

@@ -1,0 +1,33 @@
+{
+  "name": "orbit-landing-page",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "config": "node scripts/set-env.js",
+    "start": "npm run config && ng serve",
+    "build": "npm run config && ng build"
+  },
+  "dependencies": {
+    "@angular/animations": "^20.3.27",
+    "@angular/common": "^20.0.0",
+    "@angular/compiler": "^20.0.0",
+    "@angular/core": "^20.0.0",
+    "@angular/forms": "^20.3.27",
+    "@angular/platform-browser": "^20.0.0",
+    "@angular/router": "^20.3.27",
+    "@ngneat/overview": "6.1.1",
+    "@ngxpert/hot-toast": "5.1.3",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^20.0.0",
+    "@angular/cli": "^20.0.0",
+    "@angular/compiler-cli": "^20.0.0",
+    "@tailwindcss/postcss": "^4.3.3",
+    "postcss": "^8.5.25",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~5.8.0"
+  }
+}

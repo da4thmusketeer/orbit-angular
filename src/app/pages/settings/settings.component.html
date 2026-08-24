@@ -1,0 +1,392 @@
+<div
+  class="min-h-screen bg-[#f6f4ee] text-[#20211e] font-['Manrope',sans-serif] selection:bg-[#d7fb66]"
+>
+  <header
+    class="sticky top-0 z-20 border-b border-[#20211e]/15 bg-[#f6f4ee]/90 px-4 py-3.5 backdrop-blur-md sm:px-6 lg:px-10"
+  >
+    <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-4">
+      <a
+        routerLink="/home"
+        class="flex items-center gap-2.5 text-2xl font-extrabold tracking-tighter hover:opacity-80"
+        ><span
+          class="relative flex h-6 w-6 shrink-0 -rotate-45 items-center justify-center rounded-t-full rounded-br-full rounded-bl-sm bg-[#20211e]"
+          ><span
+            class="absolute left-[4px] top-[4px] h-2 w-2 rounded-full bg-[#d7fb66]"
+          ></span></span
+        >orbit</a
+      >
+      <div
+        class="hidden items-center gap-2 text-[11px] font-mono font-semibold text-[#20211e]/55 sm:flex"
+      >
+        <span class="h-2 w-2 rounded-full bg-[#d7fb66]"></span> ORBIT STUDIO
+      </div>
+      <a
+        routerLink="/home"
+        class="rounded-full border border-[#20211e]/15 bg-white/70 px-4 py-2 text-xs font-bold transition hover:border-[#20211e]/35 hover:bg-white"
+        >← Back</a
+      >
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-[1180px] px-4 py-8 sm:px-6 lg:px-10 lg:py-12">
+    <div
+      class="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-end"
+    >
+      <div>
+        <!-- <p
+          class="mb-2 text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-[#20211e]/55"
+        >
+          Personal control room
+        </p> -->
+        <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">
+          Settings,
+          <em
+            class="font-['Playfair_Display',serif] font-normal italic underline decoration-[#d7fb66] decoration-4 underline-offset-4"
+            >tuned to you.</em
+          >
+        </h1>
+      </div>
+      <p class="max-w-xs text-sm font-medium leading-relaxed text-[#20211e]/65">
+        Manage the details that keep your Orbit workspace feeling like home.
+      </p>
+    </div>
+    <div class="grid gap-6 lg:grid-cols-[235px_minmax(0,1fr)]">
+      <nav
+        class="h-fit rounded-2xl border border-[#20211e]/15 bg-white/70 p-2 shadow-sm"
+        aria-label="Settings sections"
+      >
+        <button
+          (click)="selectTab('profile')"
+          [class]="
+            activeTab === 'profile'
+              ? 'bg-[#20211e] text-white shadow-sm'
+              : 'text-[#20211e]/70 hover:bg-[#20211e]/5'
+          "
+          class="flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-left text-xs font-bold transition"
+        >
+          <svg
+              class="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.118a7.5 7.5 0 0 1 15 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.5-1.632Z"
+              /></svg
+          >My profile
+        </button>
+        <button
+          (click)="selectTab('workspace')"
+          [class]="
+            activeTab === 'workspace'
+              ? 'bg-[#20211e] text-white shadow-sm'
+              : 'text-[#20211e]/70 hover:bg-[#20211e]/5'
+          "
+          class="mt-1 flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-left text-xs font-bold transition"
+        >
+          <svg
+              class="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.25 21h19.5M3.75 21V9.75m0 0L12 3l8.25 6.75m-16.5 0h16.5M5.25 21v-7.5h3V21m3 0v-7.5h3V21m3 0v-7.5h3V21"
+              /></svg
+          >Workspace
+        </button>
+        <button
+          (click)="selectTab('notifications')"
+          [class]="
+            activeTab === 'notifications'
+              ? 'bg-[#20211e] text-white shadow-sm'
+              : 'text-[#20211e]/70 hover:bg-[#20211e]/5'
+          "
+          class="mt-1 flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-left text-xs font-bold transition"
+        >
+          <svg
+              class="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18.75 9.75V9A6.75 6.75 0 0 0 5.25 9v.75a8.967 8.967 0 0 1-1.561 5.022 23.848 23.848 0 0 0 5.454 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+              /></svg
+          >Notifications
+        </button>
+        <button
+          (click)="selectTab('security')"
+          [class]="
+            activeTab === 'security'
+              ? 'bg-[#20211e] text-white shadow-sm'
+              : 'text-[#20211e]/70 hover:bg-[#20211e]/5'
+          "
+          class="mt-1 flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-left text-xs font-bold transition"
+        >
+          <svg
+              class="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16.5 10.5V6.75a4.5 4.5 0 0 0-9 0v3.75m-.75 0h10.5A1.5 1.5 0 0 1 18.75 12v7.5A1.5 1.5 0 0 1 17.25 21h-10.5a1.5 1.5 0 0 1-1.5-1.5V12a1.5 1.5 0 0 1 1.5-1.5Z"
+              /></svg
+          >Security
+        </button>
+        <div class="mx-2 my-3 border-t border-[#20211e]/10"></div>
+        <a
+          routerLink="/home"
+          class="flex items-center gap-3 rounded-xl px-3.5 py-3 text-xs font-bold text-[#20211e]/60 transition hover:bg-[#20211e]/5"
+          >← Leave settings</a
+        >
+      </nav>
+      <section
+        class="overflow-hidden rounded-3xl border border-[#20211e]/20 bg-white/80 shadow-sm"
+      >
+        <div class="border-b border-[#20211e]/10 px-6 py-5 sm:px-8">
+          <p
+            class="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-[#20211e]/50"
+          >
+            {{ activeTab }} settings
+          </p>
+          <h2 class="mt-1 text-2xl font-extrabold tracking-tight">
+            {{
+              activeTab === "profile"
+                ? "Your details"
+                : activeTab === "workspace"
+                  ? "Shape your space"
+                  : activeTab === "notifications"
+                    ? "Stay in the loop"
+                    : "Keep things secure"
+            }}
+          </h2>
+        </div>
+        <form (ngSubmit)="saveChanges()" class="p-6 sm:p-8">
+          <ng-container *ngIf="activeTab === 'profile'"
+            ><div
+              class="mb-8 flex flex-col gap-5 border-b border-[#20211e]/10 pb-8 sm:flex-row sm:items-center"
+            >
+              <div
+                class="relative grid h-20 w-20 shrink-0 place-items-center rounded-full border-2 border-[#20211e] bg-[#aea0ff] text-xl font-extrabold"
+              >
+                AM<span
+                  class="absolute bottom-0 right-0 grid h-6 w-6 place-items-center rounded-full border-2 border-white bg-[#d7fb66] text-xs"
+                  >+</span
+                >
+              </div>
+              <div>
+                <h3 class="font-extrabold">A little more you</h3>
+                <p
+                  class="mt-1 text-xs font-medium leading-relaxed text-[#20211e]/65"
+                >
+                  Upload a photo so your teammates can spot you in a busy board.
+                </p>
+                <button
+                  type="button"
+                  class="mt-3 rounded-full border border-[#20211e]/20 bg-white px-3.5 py-1.5 text-xs font-bold hover:bg-[#f6f4ee]"
+                >
+                  Change photo
+                </button>
+              </div>
+            </div>
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="field-label"
+                >Full name<input
+                  [(ngModel)]="profile.name"
+                  name="name"
+                  class="field-input" /></label
+              ><label class="field-label"
+                >Email address<input
+                  [(ngModel)]="profile.email"
+                  name="email"
+                  type="email"
+                  class="field-input" /></label
+              ><label class="field-label"
+                >Your role<input
+                  [(ngModel)]="profile.role"
+                  name="role"
+                  class="field-input" /></label
+              ><label class="field-label"
+                >Time zone<select
+                  [(ngModel)]="profile.timezone"
+                  name="timezone"
+                  class="field-input"
+                >
+                  <option>GMT+00:00</option>
+                  <option>GMT-05:00</option>
+                  <option>GMT+01:00</option>
+                </select></label
+              >
+            </div></ng-container
+          >
+          <ng-container *ngIf="activeTab === 'workspace'"
+            ><div class="grid gap-5 sm:grid-cols-2">
+              <label class="field-label"
+                >Workspace name<input
+                  [(ngModel)]="workspaceName"
+                  name="workspaceName"
+                  class="field-input" /></label
+              ><label class="field-label"
+                >Orbit URL<span class="relative block"
+                  ><span class="absolute left-3 top-3 text-xs text-[#20211e]/45"
+                    >orbit.so/</span
+                  ><input
+                    [(ngModel)]="workspaceUrl"
+                    name="workspaceUrl"
+                    class="field-input pl-[60px]" /></span
+              ></label>
+            </div>
+            <div
+              class="mt-8 rounded-2xl border border-[#20211e]/15 bg-[#f6f4ee] p-5"
+            >
+              <p
+                class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#20211e]/50"
+              >
+                Workspace appearance
+              </p>
+              <div class="mt-4 flex items-center justify-between gap-5">
+                <div>
+                  <h3 class="text-sm font-extrabold">Compact task cards</h3>
+                  <p class="mt-1 text-xs font-medium text-[#20211e]/60">
+                    Fit a little more momentum into each view.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  (click)="compactMode = !compactMode"
+                  [class.bg-[#20211e]]="compactMode"
+                  class="relative h-7 w-12 rounded-full bg-[#20211e]/20 transition"
+                >
+                  <span
+                    [class.translate-x-6]="compactMode"
+                    class="absolute left-1 top-1 h-5 w-5 rounded-full bg-white shadow transition"
+                  ></span>
+                </button>
+              </div></div
+          ></ng-container>
+          <ng-container *ngIf="activeTab === 'notifications'"
+            ><div class="space-y-1">
+              <div class="toggle-row">
+                <div>
+                  <h3>Email updates</h3>
+                  <p>Project movement and useful Orbit news.</p>
+                </div>
+                <button
+                  type="button"
+                  (click)="emailUpdates = !emailUpdates"
+                  [class.bg-[#20211e]]="emailUpdates"
+                  class="toggle"
+                >
+                  <span [class.translate-x-6]="emailUpdates"></span>
+                </button>
+              </div>
+              <div class="toggle-row">
+                <div>
+                  <h3>Mentions & assignments</h3>
+                  <p>Get notified when a teammate needs you.</p>
+                </div>
+                <button
+                  type="button"
+                  (click)="mentionAlerts = !mentionAlerts"
+                  [class.bg-[#20211e]]="mentionAlerts"
+                  class="toggle"
+                >
+                  <span [class.translate-x-6]="mentionAlerts"></span>
+                </button>
+              </div>
+              <div class="toggle-row">
+                <div>
+                  <h3>Weekly digest</h3>
+                  <p>A thoughtful wrap-up every Monday morning.</p>
+                </div>
+                <button
+                  type="button"
+                  (click)="weeklyDigest = !weeklyDigest"
+                  [class.bg-[#20211e]]="weeklyDigest"
+                  class="toggle"
+                >
+                  <span [class.translate-x-6]="weeklyDigest"></span>
+                </button>
+              </div></div
+          ></ng-container>
+          <ng-container *ngIf="activeTab === 'security'"
+            ><div
+              class="rounded-2xl border border-[#20211e]/15 bg-[#f6f4ee] p-5"
+            >
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p
+                    class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#20211e]/50"
+                  >
+                    Password
+                  </p>
+                  <h3 class="mt-1 font-extrabold">Protect your Orbit</h3>
+                  <p class="mt-1 text-xs font-medium text-[#20211e]/60">
+                    Last updated 3 months ago.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  class="rounded-full border border-[#20211e]/20 bg-white px-4 py-2 text-xs font-bold hover:bg-[#d7fb66]"
+                >
+                  Change password
+                </button>
+              </div>
+            </div>
+            <div class="mt-5 rounded-2xl border border-[#20211e]/15 p-5">
+              <p
+                class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#20211e]/50"
+              >
+                Active session
+              </p>
+              <div class="mt-3 flex items-center justify-between gap-4">
+                <div>
+                  <h3 class="text-sm font-extrabold">Chrome on Windows</h3>
+                  <p class="mt-1 text-xs font-medium text-[#20211e]/60">
+                    Reykjavík, Iceland · Active now
+                  </p>
+                </div>
+                <span
+                  class="rounded-full bg-[#d7fb66] px-2.5 py-1 text-[10px] font-mono font-bold"
+                  >CURRENT</span
+                >
+              </div>
+            </div></ng-container
+          >
+          <div
+            class="mt-9 flex items-center justify-between border-t border-[#20211e]/10 pt-5"
+          >
+            <span
+              class="text-xs font-bold text-[#48701c]"
+              [class.invisible]="!saved"
+              >✓ Changes saved</span
+            ><button
+              type="submit"
+              class="rounded-full bg-[#20211e] px-5 py-2.5 text-xs font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#383a34]"
+            >
+              Save changes →
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+</div>

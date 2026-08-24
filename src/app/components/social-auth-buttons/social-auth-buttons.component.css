@@ -1,0 +1,30 @@
+.social-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #f9f8f4;
+  border: 1px solid rgba(32, 33, 30, 0.25);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.social-btn:hover {
+  background: #eae8df;
+}
+
+.social-icon {
+  width: 16px;
+  height: 16px;
+}

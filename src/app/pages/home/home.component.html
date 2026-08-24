@@ -1,0 +1,528 @@
+<div
+  class="min-h-screen bg-[#f6f4ee] text-[#20211e] font-['Manrope',sans-serif] selection:bg-[#d7fb66]"
+>
+  <header class="border-b border-[#20211e]/15 px-4 py-4 sm:px-6 lg:px-10">
+    <div class="mx-auto flex max-w-[1200px] items-center justify-between">
+      <a
+        routerLink="/"
+        class="flex items-center gap-2.5 text-2xl font-extrabold tracking-tighter"
+      >
+        <span
+          class="relative flex h-6 w-6 -rotate-45 rounded-t-full rounded-br-full rounded-bl-sm bg-[#20211e]"
+          ><span
+            class="absolute left-[4px] top-[4px] h-2 w-2 rounded-full bg-[#d7fb66]"
+          ></span></span
+        >orbit
+      </a>
+      <div class="flex items-center gap-2">
+        <a
+          routerLink="/settings"
+          aria-label="Open settings"
+          class="grid h-9 w-9 place-items-center rounded-full text-[#20211e]/70 transition hover:bg-white hover:text-[#20211e]"
+          ><svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10.5 6h3m-3 12h3m-9.75-6h16.5M6 3.75v4.5m12-4.5v4.5m-12 7.5v4.5m12-4.5v4.5"
+            /></svg
+        ></a>
+        <div
+          class="grid h-9 w-9 place-items-center rounded-full border border-[#20211e]/20 bg-[#aea0ff] text-xs font-extrabold"
+        >
+          AM
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:px-10 lg:py-20">
+    <section *ngIf="!hasWorkspace" class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <p
+          class="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#20211e]/55"
+        >
+          Welcome to Orbit
+        </p>
+        <h1 class="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">
+          Your work needs a
+          <em
+            class="font-['Playfair_Display',serif] font-normal italic underline decoration-[#d7fb66] decoration-4 underline-offset-4"
+            >home base.</em
+          >
+        </h1>
+        <p
+          class="mx-auto mt-5 max-w-2xl text-sm font-medium leading-relaxed text-[#20211e]/65 sm:text-base"
+        >
+          Workspaces are where Orbit comes alive: your team, projects, and
+          shared momentum—all in one clear place.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-5 md:grid-cols-2">
+        <button
+          (click)="showCreateWorkspaceModal = true"
+          class="group rounded-3xl border border-[#20211e]/20 bg-white p-7 text-left shadow-sm transition hover:-translate-y-1 hover:border-[#20211e]/40 hover:shadow-md sm:p-8"
+        >
+          <!-- <span
+            class="grid h-11 w-11 place-items-center rounded-2xl bg-[#d7fb66]"
+            ><svg
+              class="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              /></svg
+          ></span> -->
+          <h2 class="mt-7 text-xl font-extrabold tracking-tight">
+            Start from scratch
+          </h2>
+          <p class="mt-2 text-sm font-medium leading-relaxed text-[#20211e]/65">
+            Name your workspace and build your own way of working from a clean
+            slate.
+          </p>
+          <span
+            class="mt-7 inline-flex items-center gap-2 text-xs font-extrabold"
+            >Create workspace
+            <svg
+              class="h-4 w-4 transition-transform group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.25 4.5 15.75 12l-7.5 7.5"
+              /></svg
+          ></span>
+        </button>
+        <a
+          href="#templates"
+          class="group rounded-3xl border border-[#20211e]/20 bg-[#20211e] p-7 text-left text-white shadow-sm transition hover:-translate-y-1 hover:shadow-md sm:p-8"
+        >
+          <!-- <span
+            class="grid h-11 w-11 place-items-center rounded-2xl bg-[#ffbf9b] text-[#20211e]"
+            ><svg
+              class="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5V6.375A3.375 3.375 0 0 0 11.25 3h-3A3.375 3.375 0 0 0 4.875 6.375v1.875h-1.5A3.375 3.375 0 0 0 0 11.625v7.875a1.5 1.5 0 0 0 1.5 1.5h17.25a.75.75 0 0 0 .75-.75v-6Zm-12-6V6.375c0-.414.336-.75.75-.75h3c.414 0 .75.336.75.75V8.25h-4.5Z"
+              /></svg
+          ></span> -->
+          <h2 class="mt-7 text-xl font-extrabold tracking-tight">
+            Use a template
+          </h2>
+          <p class="mt-2 text-sm font-medium leading-relaxed text-white/65">
+            Begin with a proven setup, pre-filled with the structure your team
+            needs.
+          </p>
+          <span
+            class="mt-7 inline-flex items-center gap-2 text-xs font-extrabold text-[#d7fb66]"
+            >Browse templates
+            <svg
+              class="h-4 w-4 transition-transform group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.25 4.5 15.75 12l-7.5 7.5"
+              /></svg
+          ></span>
+        </a>
+      </div>
+
+      <!-- <section id="templates" class="mt-16 border-t border-[#20211e]/15 pt-10">
+        <div
+          class="flex flex-col justify-between gap-3 sm:flex-row sm:items-end"
+        >
+          <div>
+            <p
+              class="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-[#20211e]/50"
+            >
+              A quicker start
+            </p>
+            <h2 class="mt-1 text-2xl font-extrabold tracking-tight">
+              Choose a workspace template
+            </h2>
+          </div>
+          <p class="text-xs font-medium text-[#20211e]/55">
+            Everything can be changed later.
+          </p>
+        </div>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          <button
+            *ngFor="let template of starterTemplates"
+            (click)="useTemplate(template)"
+            class="group flex items-start gap-4 rounded-2xl border border-[#20211e]/15 bg-white/70 p-5 text-left transition hover:border-[#20211e]/40 hover:bg-white"
+          >
+            <span
+              class="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[#f6f4ee] text-[#20211e]"
+              ><svg
+                class="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 6.75a.75.75 0 0 0-.75.75v3.75H7.5a.75.75 0 0 0 0 1.5h3.75v3.75a.75.75 0 0 0 1.5 0v-3.75h3.75a.75.75 0 0 0 0-1.5h-3.75V7.5a.75.75 0 0 0-.75-.75Z"
+                /></svg
+            ></span>
+            <span class="min-w-0"
+              ><span class="block text-sm font-extrabold">{{
+                template.name
+              }}</span
+              ><span
+                class="mt-1 block text-xs font-medium leading-relaxed text-[#20211e]/60"
+                >{{ template.description }}</span
+              ><span
+                class="mt-3 inline-flex items-center gap-1 text-[10px] font-mono font-bold uppercase tracking-wider text-[#20211e]/55"
+                >Use template
+                <svg
+                  class="h-3.5 w-3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 5.25 15.75 12 9 18.75"
+                  /></svg></span
+            ></span>
+          </button>
+        </div>
+      </section> -->
+    </section>
+
+    <section *ngIf="hasWorkspace" class="mx-auto max-w-5xl">
+      <div
+        class="flex flex-col justify-between gap-5 border-b border-[#20211e]/15 pb-8 sm:flex-row sm:items-end"
+      >
+        <div>
+          <p
+            class="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-[#20211e]/55"
+          >
+            Your workspace
+          </p>
+          <h1 class="mt-2 text-4xl font-extrabold tracking-tight">
+            {{ currentWorkspaceName }}
+          </h1>
+          <p class="mt-3 text-sm font-medium text-[#20211e]/65">
+            A calm place for the work that matters.
+          </p>
+        </div>
+        <button
+          (click)="showNewTaskModal = true"
+          class="inline-flex items-center justify-center gap-2 rounded-full bg-[#20211e] px-4 py-2.5 text-xs font-extrabold text-white hover:bg-[#383a34]"
+        >
+          <svg
+            class="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 4.5v15m7.5-7.5h-15"
+            /></svg
+          >New task
+        </button>
+      </div>
+      <div class="mt-8 grid gap-5 md:grid-cols-[1.4fr_0.8fr]">
+        <div class="rounded-3xl border border-[#20211e]/20 bg-white p-6">
+          <p
+            class="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-[#20211e]/50"
+          >
+            Up next
+          </p>
+          <div *ngIf="tasks.length; else emptyTasks" class="mt-4 space-y-2">
+            <button
+              *ngFor="let task of tasks.slice(0, 4)"
+              (click)="toggleTask(task.id)"
+              class="flex w-full items-center gap-3 rounded-xl p-3 text-left hover:bg-[#f6f4ee]"
+            >
+              <span
+                class="grid h-5 w-5 shrink-0 place-items-center rounded-full border border-[#20211e]/30"
+                [class.bg-[#d7fb66]]="task.completed"
+                ><svg
+                  *ngIf="task.completed"
+                  class="h-3 w-3"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m4.5 12.75 6 6 9-13.5"
+                  /></svg></span
+              ><span
+                [class.line-through]="task.completed"
+                class="text-xs font-bold"
+                >{{ task.title }}</span
+              >
+            </button>
+          </div>
+          <ng-template #emptyTasks
+            ><p class="mt-4 text-sm font-medium text-[#20211e]/55">
+              No tasks yet. Add the first small step.
+            </p></ng-template
+          >
+        </div>
+        <div class="rounded-3xl border border-[#20211e]/20 bg-[#d7fb66] p-6">
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3v18m9-9H3"
+            />
+          </svg>
+          <h2 class="mt-8 text-xl font-extrabold tracking-tight">
+            Make it yours.
+          </h2>
+          <p class="mt-2 text-sm font-medium leading-relaxed text-[#20211e]/70">
+            Invite the people who turn good plans into progress.
+          </p>
+          <button
+            (click)="showInviteModal = true"
+            class="mt-6 rounded-full border border-[#20211e]/25 bg-white/65 px-4 py-2 text-xs font-extrabold hover:bg-white"
+          >
+            Invite teammates
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div
+    *ngIf="showCreateWorkspaceModal"
+    class="fixed inset-0 z-50 grid place-items-center bg-[#20211e]/35 p-4 backdrop-blur-sm"
+  >
+    <form
+      (ngSubmit)="createWorkspace()"
+      class="w-full max-w-md rounded-3xl border border-[#20211e]/25 bg-[#f6f4ee] p-6 shadow-2xl sm:p-8"
+    >
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <p
+            class="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-[#20211e]/50"
+          >
+            New workspace
+          </p>
+          <h2 class="mt-1 text-2xl font-extrabold tracking-tight">
+            Start somewhere good.
+          </h2>
+        </div>
+        <button
+          type="button"
+          (click)="showCreateWorkspaceModal = false"
+          aria-label="Close"
+          class="grid h-8 w-8 place-items-center rounded-full hover:bg-white"
+        >
+          <svg
+            class="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m6 6 12 12M18 6 6 18"
+            />
+          </svg>
+        </button>
+      </div>
+      <label
+        class="mt-7 block text-[10px] font-mono font-bold uppercase tracking-wider"
+        >Workspace name<input
+          [(ngModel)]="newWorkspaceInput"
+          name="workspaceName"
+          required
+          autofocus
+          placeholder="e.g. Northstar Studio"
+          class="mt-2 block w-full rounded-xl border border-[#20211e]/20 bg-white px-4 py-3 text-sm font-semibold outline-none focus:border-[#20211e] focus:ring-2 focus:ring-[#d7fb66]" /></label
+      ><label
+        class="mt-5 block text-[10px] font-mono font-bold uppercase tracking-wider"
+        >Focus<select
+          [(ngModel)]="newWorkspaceCategory"
+          name="workspaceFocus"
+          class="mt-2 block w-full rounded-xl border border-[#20211e]/20 bg-white px-4 py-3 text-sm font-semibold outline-none focus:border-[#20211e]"
+        >
+          <option value="Growth & Strategy">Product & growth</option>
+          <option value="Design & Engineering">Design & engineering</option>
+          <option value="Operations">Operations</option>
+        </select></label
+      >
+      <div class="mt-7 flex justify-end gap-3">
+        <button
+          type="button"
+          (click)="showCreateWorkspaceModal = false"
+          class="px-4 py-2 text-xs font-bold text-[#20211e]/65"
+        >
+          Cancel</button
+        ><button
+          type="submit"
+          class="inline-flex items-center gap-2 rounded-full bg-[#20211e] px-5 py-2.5 text-xs font-extrabold text-white hover:bg-[#383a34]"
+        >
+          Create workspace
+          <svg
+            class="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.25 4.5 15.75 12l-7.5 7.5"
+            />
+          </svg>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div
+    *ngIf="showNewTaskModal"
+    class="fixed inset-0 z-50 grid place-items-center bg-[#20211e]/35 p-4 backdrop-blur-sm"
+  >
+    <form
+      (ngSubmit)="createNewTask()"
+      class="w-full max-w-md rounded-3xl border border-[#20211e]/25 bg-[#f6f4ee] p-6 shadow-2xl"
+    >
+      <div class="flex justify-between">
+        <h2 class="text-xl font-extrabold">New task</h2>
+        <button
+          type="button"
+          (click)="showNewTaskModal = false"
+          aria-label="Close"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m6 6 12 12M18 6 6 18"
+            />
+          </svg>
+        </button>
+      </div>
+      <input
+        [(ngModel)]="quickTaskTitle"
+        name="taskTitle"
+        required
+        autofocus
+        placeholder="What needs doing?"
+        class="mt-5 w-full rounded-xl border border-[#20211e]/20 bg-white px-4 py-3 text-sm font-semibold outline-none focus:border-[#20211e]"
+      />
+      <div class="mt-6 flex justify-end gap-3">
+        <button
+          type="button"
+          (click)="showNewTaskModal = false"
+          class="px-4 py-2 text-xs font-bold"
+        >
+          Cancel</button
+        ><button
+          type="submit"
+          class="rounded-full bg-[#20211e] px-5 py-2.5 text-xs font-extrabold text-white"
+        >
+          Add task
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div
+    *ngIf="showInviteModal"
+    class="fixed inset-0 z-50 grid place-items-center bg-[#20211e]/35 p-4 backdrop-blur-sm"
+  >
+    <div
+      class="w-full max-w-md rounded-3xl border border-[#20211e]/25 bg-[#f6f4ee] p-6 shadow-2xl"
+    >
+      <div class="flex justify-between">
+        <h2 class="text-xl font-extrabold">Invite teammates</h2>
+        <button (click)="showInviteModal = false" aria-label="Close">
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m6 6 12 12M18 6 6 18"
+            />
+          </svg>
+        </button>
+      </div>
+      <input
+        [(ngModel)]="inviteEmail"
+        type="email"
+        placeholder="name@company.com"
+        class="mt-5 w-full rounded-xl border border-[#20211e]/20 bg-white px-4 py-3 text-sm font-semibold outline-none focus:border-[#20211e]"
+      />
+      <div class="mt-6 flex justify-end">
+        <button
+          (click)="sendInvite()"
+          class="rounded-full bg-[#20211e] px-5 py-2.5 text-xs font-extrabold text-white"
+        >
+          Send invite
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

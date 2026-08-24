@@ -1,0 +1,105 @@
+<div class="auth-page">
+  <!-- Header -->
+  <header class="auth-header wrap">
+    <a routerLink="/" class="logo"> <span class="logo-mark"></span>orbit </a>
+    <div class="header-right">
+      <span class="header-hint">New to Orbit?</span>
+      <a routerLink="/signup" class="btn-pill">Create Account </a>
+    </div>
+  </header>
+
+  <!-- Main Auth Form -->
+  <main class="auth-main wrap">
+    <div class="blob-lime"></div>
+    <div class="blob-purple"></div>
+
+    <div class="auth-card">
+      <div class="auth-badge">Welcome back</div>
+
+      <div class="eyebrow">01 / SIGN IN</div>
+      <h1 class="auth-title">Back to <em>motion.</em></h1>
+      <p class="auth-subtitle">
+        Enter your credentials to access your Orbit workspace.
+      </p>
+
+      <form (ngSubmit)="onSubmit()" class="auth-form" novalidate>
+        <!-- Email -->
+        <div class="form-group">
+          <label class="form-label">Work Email</label>
+          <input
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            required
+            placeholder="alex@company.com"
+            class="form-input"
+          />
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <div class="form-header-row">
+            <label class="form-label">Password</label>
+            <a routerLink="/forgot-password" class="forgot-link"
+              >Forgot password?</a
+            >
+          </div>
+          <div class="input-wrapper">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              [(ngModel)]="password"
+              name="password"
+              required
+              placeholder="••••••••••••"
+              class="form-input"
+            />
+            <button
+              type="button"
+              (click)="showPassword = !showPassword"
+              class="toggle-pwd"
+            >
+              {{ showPassword ? "HIDE" : "SHOW" }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Remember Me -->
+        <!-- <div class="checkbox-row">
+          <input
+            type="checkbox"
+            id="rememberMe"
+            [(ngModel)]="rememberMe"
+            name="rememberMe"
+          />
+          <label for="rememberMe" class="checkbox-label">Remember this device</label>
+        </div> -->
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn" [disabled]="!isFormValid">
+          {{ buttonText() }}
+        </button>
+      </form>
+
+      <div class="divider">
+        <span class="divider-text">OR CONTINUE WITH</span>
+      </div>
+
+      <app-social-auth-buttons intent="login" />
+
+      <div class="switch-text">
+        Don't have an Orbit workspace?
+        <a routerLink="/signup">Create workspace</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <!-- <footer class="auth-footer wrap">
+    <div>© 2026 Orbit, Inc. All rights reserved.</div>
+    <div class="footer-links">
+      <a routerLink="/">Privacy</a>
+      <a routerLink="/">Terms</a>
+      <a routerLink="/">Contact Support</a>
+    </div>
+  </footer> -->
+</div>
