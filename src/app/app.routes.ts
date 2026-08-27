@@ -7,15 +7,20 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { GithubCallbackComponent } from './pages/github-callback/github-callback.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
+  // Public Routes (Accessible to unauthenticated users)
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'settings', component: SettingsComponent },
   { path: 'auth/github/callback', component: GithubCallbackComponent },
+
+  // Private Routes (Protected by authGuard)
+  { path: 'home', component: HomeComponent, canActivate: [authGuard] },
+  { path: 'settings', component: SettingsComponent, canActivate: [authGuard] },
+
   { path: '**', redirectTo: '' }
 ];
