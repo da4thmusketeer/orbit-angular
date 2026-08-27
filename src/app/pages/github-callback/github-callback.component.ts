@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { environment } from "src/app/environments/environments";
-import {ToastService} from "../../services/toast.service";
+import { ToastService } from "../../services/toast.service";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   standalone: true,
@@ -40,10 +41,10 @@ export class GithubCallbackComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private toast: ToastService
+    private toast: ToastService,
+    private authService: AuthService
   ) {}
 
- //Upon page initialization, this method retrieves the authorization code and state from the URL parameters, validates them against the expected values stored in sessionStorage, and then sends a POST request to the backend to exchange the code for an access token. If successful, it navigates to the home page; otherwise, it redirects to the login page.
   ngOnInit() {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
@@ -57,10 +58,7 @@ export class GithubCallbackComponent implements OnInit {
       this.router.navigateByUrl("/login");
       return;
     }
-    
-    //console.log("GitHub OAuth callback received. Exchanging code for token and sending to backend for token exchange.");
 
-    // Send the authorization code and code verifier to the backend for token exchange
     this.http
       .post(
         `${environment.API_BASE_URL}/auth/oauth/github`,
@@ -70,18 +68,43 @@ export class GithubCallbackComponent implements OnInit {
           redirectUri: `${environment.FRONTEND_BASE_URL}/auth/github/callback`,
           intent,
         },
-        { withCredentials: true },
+        { withCredentials: true }
       )
-      .subscribe({  // subscribe means to listen for the response
-        next: () => { // if successful, navigate to home page
+      .subscribe({
+        next: (response: any) => {
           sessionStorage.removeItem("github_oauth_state");
           sessionStorage.removeItem("github_oauth_verifier");
           sessionStorage.removeItem("github_oauth_intent");
-          this.router.navigateByUrl("/home");
-          this.toast.success("Signed in successfully.");
+
+          // Extract token robustly across snake_case, camelCase, nested data, or session response
+          const token =
+            response?.accessToken ||
+            response?.access_token ||
+            response?.token ||
+            response?.data?.accessToken ||
+            response?.data?.access_token ||
+            response?.data?.token ||
+            (response?.user || response?.success ? "authenticated-session" : null);
+
+          if (token) {
+            this.authService.setAccessToken(token);
+          }
+
+          this.router.navigate(["/home"]).then((navigated) => {
+            if (navigated) {
+              this.toast.success("Signed in successfully.");
+            } else {
+              console.warn("Navigation to /home was blocked by authGuard.");
+              this.toast.error("Authentication check failed. Please log in.");
+              this.router.navigate(["/login"]);
+            }
+          });
         },
-        // if error, navigate to login page
-        error: () => this.router.navigateByUrl("/login"),
+        error: (error) => {
+          console.error("GitHub auth callback error:", error);
+          this.toast.error(error?.error?.message || "GitHub sign in failed.");
+          this.router.navigateByUrl("/login");
+        },
       });
   }
 }

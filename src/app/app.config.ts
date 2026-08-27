@@ -1,23 +1,30 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection, provideAppInitializer, inject } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideHotToastConfig } from '@ngxpert/hot-toast';
+import { firstValueFrom } from 'rxjs';
 import { routes } from './app.routes';
+import { authInterceptor } from './interceptors/auth.interceptor';
+import { AuthService } from './services/auth.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideNoopAnimations(),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([authInterceptor])),
+    provideAppInitializer(() => {
+      const authService = inject(AuthService);
+      return firstValueFrom(authService.refresh());
+    }),
     provideHotToastConfig({
       position: "top-center",
       duration: 4000,
       theme: "toast",
       style: {
-        borderRadius: "50px", // Use '12px' for a subtle curve, or '50px' for pill-shaped
-        padding: "10px", // Optional: Give it a bit more breathing room
+        borderRadius: "50px",
+        padding: "10px",
       },
     }),
   ],

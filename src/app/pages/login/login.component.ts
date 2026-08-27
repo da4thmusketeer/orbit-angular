@@ -43,13 +43,23 @@ export class LoginComponent {
       password: this.password
     }).subscribe({
       next: (response: any) => {
-        if (response && response.success) {
+        // Backend HTTP 2xx response
+        const isSuccessful = response && (response.success !== false);
+        if (isSuccessful) {
           this.toast.success(`Signed in successfully.`);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/home']).then((navigated) => {
+            if (!navigated) {
+              this.buttonText.set("Sign In");
+            }
+          });
+        } else {
+          this.toast.error(response?.message || `Failed to sign in.`);
+          this.buttonText.set("Sign In");
         }
       },
       error: (error) => {
-        this.toast.error(`Failed to sign in.`);
+        const errorMsg = error?.error?.message || `Failed to sign in.`;
+        this.toast.error(errorMsg);
         this.buttonText.set("Sign In");
       }
     });

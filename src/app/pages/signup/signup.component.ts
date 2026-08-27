@@ -48,23 +48,24 @@ export class SignupComponent {
         password: this.password,
       })
       .subscribe({
-        // The next block checks if the HTTP call is successful and performs the next actions accordingly. 
-        // It does not care what the response is, it just checks if the call was successful or not. 
-        // So if the HTTP response is 2xx and the response from the server is { success: false }, it will still be considered a successful call and will navigate to the home page.
-        // The actual response check from the server should be done in the frontend code.
-        next: (response:any) => {
-
-          // this block checks if the response is successful ie. {success:true} and navigates to the home page if it is. If not, it shows an error message.
-          console.log("Success Response from server:", response.success);
-          if (response && response.success) {
-          this.toast.success(`Account created successfully.`);
-          this.router.navigate(["/home"]);
-          } 
+        next: (response: any) => {
+          const isSuccessful = response && (response.success !== false);
+          if (isSuccessful) {
+            this.toast.success(`Account created successfully.`);
+            this.router.navigate(["/home"]).then((navigated) => {
+              if (!navigated) {
+                this.buttonText.set("Create Account");
+              }
+            });
+          } else {
+            this.toast.error(response?.message || `Failed to create account.`);
+            this.buttonText.set("Create Account");
+          }
         },
-        error: (error) => { 
+        error: (error) => {
           console.error("Account creation failed", error);
-          console.error("Error details:", error.error.message);
-          this.toast.error(`Failed to create account. ${error.error.message}`);
+          const errorMsg = error?.error?.message || `Failed to create account.`;
+          this.toast.error(errorMsg);
           this.buttonText.set("Create Account");
         },
       });
